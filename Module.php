@@ -16,7 +16,7 @@ class Module extends \humhub\components\Module
     public static function onLayoutAddonsInit($event)
     {
         if (!Yii::$app->user->isGuest && self::showTermsbox()) {
-            $event->sender->addWidget(widgets\TermsBoxModal::className(), array(), array('sortOrder' => 1));
+            $event->sender->addWidget(widgets\TermsBoxModal::className(), array(), array('sortOrder' => 99999));
         }
     }
 
