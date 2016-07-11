@@ -10,13 +10,13 @@ class Module extends \humhub\components\Module
 
     /**
      * On Init of Dashboard Sidebar, add the widget
-     * 
+     *
      * @param type $event
      */
     public static function onLayoutAddonsInit($event)
     {
         if (!Yii::$app->user->isGuest && self::showTermsbox()) {
-            $event->sender->addWidget(widgets\TermsBoxModal::className(), array(), array('sortOrder' => 1));
+            $event->sender->addWidget(widgets\TermsboxModal::className(), array(), array('sortOrder' => 1));
         }
     }
 
@@ -26,14 +26,14 @@ class Module extends \humhub\components\Module
         if(!$settings->get('active')) {
             return false;
         }
-        
+
         $lastSeenTS = $settings->user()->get('timestamp');
         $currentTermsTS = $settings->get('timestamp');
-        
+
         return $currentTermsTS != null && $lastSeenTS != $currentTermsTS;
     }
-    
-    
+
+
     public function getConfigUrl()
     {
         return Url::to(['/termsbox/admin/index']);
