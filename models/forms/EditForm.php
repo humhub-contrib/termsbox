@@ -68,8 +68,9 @@ class EditForm extends \yii\base\Model
             $settings->set('active', false);
         }
               
+        // Note the reset flag only affects the timestamp if the conditionas are active
         $lastTimeStamp = $settings->get('timestamp');
-        if ($this->reset || $lastTimeStamp == null) {
+        if ($this->active && ($this->reset || $lastTimeStamp == null)) {
             $settings->set('timestamp', time());
         }
         

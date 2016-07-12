@@ -15,15 +15,15 @@ class Module extends \humhub\components\Module
      */
     public static function onLayoutAddonsInit($event)
     {
-        if (!Yii::$app->user->isGuest && self::showTermsbox()) {
-            $event->sender->addWidget(widgets\TermsboxModal::className(), array(), array('sortOrder' => 99999));
+        if (self::showTermsbox()) {
+            $event->sender->addWidget(widgets\TermsboxModal::className(), [], ['sortOrder' => 99999]);
         }
     }
 
     public static function showTermsbox()
     {
         $settings = Yii::$app->getModule('termsbox')->settings;
-        if(!$settings->get('active')) {
+        if(Yii::$app->user->isGuest || !$settings->get('active')) {
             return false;
         }
 
