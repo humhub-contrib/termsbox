@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\codeception\unit\modules\breakingnews;
+namespace tests\codeception\unit\modules\termsbox;
 
 use Yii;
 use tests\codeception\_support\HumHubDbTestCase;

@@ -21,10 +21,10 @@ class TermsboxCest
         $this->module->settings->delete('timestamp');
     }
     
-    public function testNewsActivation(FunctionalTester $I)
+    public function testTermsbox(FunctionalTester $I)
     {
-        $I->wantToTest('if the news activation works as expected');
-        $I->amGoingTo('save the news form without activation');
+        $I->wantToTest('if the termsbox works as expected');
+        $I->amGoingTo('save the termsbox form without activation');
         
         $form = new EditForm();
         $form->title = 'MyTitle';
@@ -38,10 +38,10 @@ class TermsboxCest
         $I->expect('not to see the termbox');
         $I->dontSeeTermsbox();
         
-        $I->amGoingTo('actite the news form and check if I see the termsbox');
+        $I->amGoingTo('actite the termsbox form and check if I see the termsbox');
         $form->active = true;
         $form->save();
-        $I->expectTo('see the termbox news');
+        $I->expectTo('see the termbox');
         $I->seeTermsbox();
         
         $I->amGoingTo('decline the termsbox');
@@ -49,10 +49,9 @@ class TermsboxCest
         $I->expect('an automatic logout');
         $I->see('Login');
         
-        
         $I->amGoingTo('login and accept the termsbox');
         $I->amUser();
-        $I->expectTo('see the termbox news');
+        $I->expectTo('see the termbox');
         $I->seeTermsbox();
         $I->acceptTermsbox();
         $I->expect('not to see the termbox after accepting it');
@@ -63,7 +62,7 @@ class TermsboxCest
         $form->active = false;
         $form->save();
         DashboardPage::openBy($I);
-        $I->expect('not to see the termbox news since it is not set to active');
+        $I->expect('not to see the termbox since it is not set to active');
         $I->dontSeeTermsbox();
         
         $I->amGoingTo('save the termbox form again with activation but no reset');
