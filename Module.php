@@ -4,36 +4,50 @@ namespace humhub\modules\termsbox;
 
 use Yii;
 use yii\helpers\Url;
+use humhub\modules\user\models\User;
 
 class Module extends \humhub\components\Module
 {
 
     /**
-     * On Init of Dashboard Sidebar, add the widget
-     *
-     * @param type $event
+     * Checks if the termsbox should be shown
+     * 
+     * @param User $user|null the user, if null the current logged in user will be used
+     * @return boolean
      */
-    public static function onLayoutAddonsInit($event)
+    public static function showTerms(User $user = null)
     {
-        if (self::showTermsbox()) {
-            $event->sender->addWidget(widgets\TermsboxModal::className(), [], ['sortOrder' => 99999]);
+        if (Yii::$app->user->isGuest) {
+            return false;
         }
-    }
-
-    public static function showTermsbox()
-    {
-        $settings = Yii::$app->getModule('termsbox')->settings;
-        if(Yii::$app->user->isGuest || !$settings->get('active')) {
+        
+        if (!Yii::$app->getModule('termsbox')->settings->get('active')) {
             return false;
         }
 
-        $lastSeenTS = $settings->user()->get('timestamp');
-        $currentTermsTS = $settings->get('timestamp');
+        if ($user === null && !Yii::$app->user->isGuest) {
+            $user = Yii::$app->user->getIdentity();
+        }
 
-        return $currentTermsTS != null && $lastSeenTS != $currentTermsTS;
+        if ($user === null || empty($user->termsbox_accepted)) {
+            return true;
+        }
+
+        return false;
     }
 
+    public function hideNotAcceptedMembers()
+    {
+        if (!Yii::$app->getModule('termsbox')->settings->get('active')) {
+            return false;
+        }
 
+        return (boolean) $this->settings->get('hideUnaccepted', false);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getConfigUrl()
     {
         return Url::to(['/termsbox/admin/index']);

@@ -3,6 +3,7 @@
 namespace humhub\modules\termsbox\models\forms;
 
 use Yii;
+use humhub\modules\user\models\User;
 
 class EditForm extends \yii\base\Model
 {
@@ -12,6 +13,8 @@ class EditForm extends \yii\base\Model
     public $content;
     public $reset;
     public $statement;
+    public $hideUnaccepted;
+    public $showAsModal;
 
     /**
      * @inheritdocs
@@ -20,10 +23,10 @@ class EditForm extends \yii\base\Model
     {
         return array(
             array(['title', 'content', 'statement'], 'required'),
-            array(['reset', 'active'], 'safe')
+            array(['reset', 'active', 'hideUnaccepted', 'showAsModal'], 'safe')
         );
     }
-    
+
     /**
      * @inheritdocs
      */
@@ -34,6 +37,8 @@ class EditForm extends \yii\base\Model
         $this->statement = $settings->get('statement', Yii::t('TermsboxModule.models_forms_EditForm', 'Please Read and Agree to our Terms & Conditions'));
         $this->content = $settings->get('content');
         $this->active = $settings->get('active', false);
+        $this->showAsModal = $settings->get('showAsModal', false);
+        $this->hideUnaccepted = $settings->get('hideUnaccepted', false);
     }
 
     /**
@@ -49,9 +54,11 @@ class EditForm extends \yii\base\Model
             'statement' => Yii::t('TermsboxModule.models_forms_EditForm', 'Statement'),
             'content' => Yii::t('TermsboxModule.models_forms_EditForm', 'Content'),
             'reset' => Yii::t('TermsboxModule.models_forms_EditForm', 'Mark as unseen for all users'),
+            'showAsModal' => Yii::t('TermsboxModule.models_forms_EditForm', 'Show terms as modal'),
+            'hideUnaccepted' => Yii::t('TermsboxModule.models_forms_EditForm', 'Hide users which not accepted the terms (Note: May require search index rebuild)'),
         );
     }
-    
+
     /**
      * Saves the given form settings.
      */
@@ -61,19 +68,14 @@ class EditForm extends \yii\base\Model
         $settings->set('title', $this->title);
         $settings->set('statement', $this->statement);
         $settings->set('content', $this->content);
-        
-        if ($this->active) {
-            $settings->set('active', true);
-        } else {
-            $settings->set('active', false);
+        $settings->set('active', (boolean) $this->active);
+        $settings->set('showAsModal', (boolean) $this->showAsModal);
+        $settings->set('hideUnaccepted', (boolean) $this->hideUnaccepted);
+
+        if ($this->reset) {
+            User::updateAll(['termsbox_accepted' => false]);
         }
-              
-        // Note the reset flag only affects the timestamp if the conditionas are active
-        $lastTimeStamp = $settings->get('timestamp');
-        if ($this->active && ($this->reset || $lastTimeStamp == null)) {
-            $settings->set('timestamp', time());
-        }
-        
+
         return true;
     }
 

@@ -2,9 +2,9 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use humhub\widgets\MarkdownView;
 
 \humhub\modules\termsbox\Assets::register($this);
-
 ?>
 
 <div class="modal" id="termsboxModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -16,7 +16,7 @@ use yii\helpers\Html;
             <div class="modal-body">
                 <p class='help-block'><?= Html::encode($statement) ?></p>
                 <div class="termsbox-body">
-                    <?php echo humhub\widgets\MarkdownView::widget(['markdown' => $content]); ?>
+                    <?= MarkdownView::widget(['markdown' => $content]); ?>
                 </div>
             </div>
             <div class="modal-footer">
@@ -31,19 +31,17 @@ use yii\helpers\Html;
 <script type="text/javascript">
 
     $(document).ready(function () {
-
         $('#termsboxModal').modal({
             backdrop: 'static',
             keyboard: false,
             show: true
         });
-
     });
-    
-    $('#termsbox-accept').on('click', function() {
+
+    $('#termsbox-accept').on('click', function () {
         $.ajax({
             url: '<?= Url::to(['/termsbox/index/accept']) ?>',
-            success: function() {
+            success: function () {
                 $('#termsboxModal').modal('hide');
             }
         });

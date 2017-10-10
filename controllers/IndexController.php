@@ -9,18 +9,30 @@ class IndexController extends Controller
 {
 
     /**
-     * Configuration Action for Super Admins
+     * @inheritdoc
      */
+    public function getAccessRules()
+    {
+        return [
+            ['login']
+        ];
+    }
+
     public function actionAccept()
     {
-        $settings = Yii::$app->getModule('termsbox')->settings;
-        $settings->user()->set('timestamp', $settings->get('timestamp'));
-        Yii::$app->response->format = 'json';
-        return ['success' => true];
+        $user = Yii::$app->user->getIdentity();
+        $user->termsbox_accepted = true;
+        $user->save();
+        
+        return $this->asJson(['success' => true]);
     }
-    
+
     public function actionDecline()
     {
+        $user = Yii::$app->user->getIdentity();
+        $user->termsbox_accepted = false;
+        $user->save();
+
         return $this->redirect(['/user/auth/logout']);
     }
 
