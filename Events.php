@@ -11,7 +11,7 @@ use humhub\events\ActiveQueryEvent;
  *
  * @author luke
  */
-class Events extends \yii\base\Object
+class Events
 {
 
     /**
