@@ -1,10 +1,13 @@
 <?php
 
+use humhub\modules\termsbox\Assets;
 use yii\helpers\Url;
-use yii\helpers\Html;
+use humhub\libs\Html;
 use humhub\widgets\MarkdownView;
 
-\humhub\modules\termsbox\Assets::register($this);
+/* @var $statement string */
+
+Assets::register($this);
 ?>
 
 <div class="modal" id="termsboxModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -28,8 +31,7 @@ use humhub\widgets\MarkdownView;
 </div>
 
 
-<script type="text/javascript">
-
+<?= Html::beginTag('script') ?>
     $(document).ready(function () {
         $('#termsboxModal').modal({
             backdrop: 'static',
@@ -46,5 +48,4 @@ use humhub\widgets\MarkdownView;
             }
         });
     });
-
-</script>
+<?= Html::endTag('script')?>
