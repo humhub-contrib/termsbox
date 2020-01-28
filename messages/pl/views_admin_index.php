@@ -1,7 +1,6 @@
 <?php
-
-return [
-    'Back to modules' => '',
-    'Save' => '',
-    'Terms Box Configuration' => '',
-];
+return array (
+  'Back to modules' => 'Powrót do modułów',
+  'Save' => 'Zapisz',
+  'Terms Box Configuration' => 'Konfiguracja skrzynki warunków',
+);
