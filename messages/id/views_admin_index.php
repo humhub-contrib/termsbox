@@ -1,7 +1,6 @@
 <?php
-
-return [
-    'Back to modules' => '',
-    'Save' => '',
-    'Terms Box Configuration' => '',
-];
+return array (
+  'Back to modules' => 'Kembali ke modul',
+  'Save' => 'Simpan',
+  'Terms Box Configuration' => '',
+);
