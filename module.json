@@ -5,6 +5,6 @@
     "keywords": ["terms", "conditions", "box", "modal"],
     "version": "1.0.4",
     "humhub": {
-        "minVersion": "1.2.3"
+        "minVersion": "1.3"
     }
 }

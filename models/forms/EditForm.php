@@ -2,6 +2,10 @@
 
 namespace humhub\modules\termsbox\models\forms;
 
+use humhub\models\ModuleEnabled;
+use humhub\modules\file\components\FileManager;
+use humhub\modules\file\libs\FileHelper;
+use humhub\modules\file\models\File;
 use Yii;
 use humhub\modules\user\models\User;
 
@@ -71,6 +75,10 @@ class EditForm extends \yii\base\Model
         $settings->set('active', (boolean) $this->active);
         $settings->set('showAsModal', (boolean) $this->showAsModal);
         $settings->set('hideUnaccepted', (boolean) $this->hideUnaccepted);
+
+
+        $fileManager = new FileManager(['record' => ModuleEnabled::findOne((['module_id' => 'termsbox']))]);
+        $fileManager->attach(Yii::$app->request->post('fileList'));
 
         if ($this->reset) {
             User::updateAll(['termsbox_accepted' => false]);

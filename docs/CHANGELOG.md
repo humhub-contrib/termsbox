@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.5  (April 06, 2020)
+---------------------
+- Fix: Markdown files not attached
+- Cng: Updated HumHub min version to 1.3
+
 1.0.4  (October 16, 2019)
 ---------------------
 - Enh: 1.4 nonce compatibility
