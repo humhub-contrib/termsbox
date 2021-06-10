@@ -1,6 +1,6 @@
 <?php
 return array (
-  'Back to modules' => '',
+  'Back to modules' => 'กลับไปที่โมดูล',
   'Save' => 'บันทึก',
-  'Terms Box Configuration' => '',
+  'Terms Box Configuration' => 'การกำหนดค่ากล่องข้อกำหนด',
 );
