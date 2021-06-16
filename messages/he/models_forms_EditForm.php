@@ -8,5 +8,5 @@ return array (
   'Show terms as modal' => '',
   'Statement' => '',
   'Terms & Conditions' => '',
-  'Title' => '',
+  'Title' => 'כותרת',
 );

@@ -1,5 +1,5 @@
 <?php
 return array (
-  'Accept' => '',
+  'Accept' => 'Αποδέχομαι',
   'Decline' => 'Άρνηση',
 );

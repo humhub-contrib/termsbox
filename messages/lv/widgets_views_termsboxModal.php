@@ -1,5 +1,5 @@
 <?php
 return array (
-  'Accept' => '',
+  'Accept' => 'Pieņemt',
   'Decline' => 'Noraidīt',
 );
