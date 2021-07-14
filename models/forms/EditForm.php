@@ -76,12 +76,14 @@ class EditForm extends \yii\base\Model
         $settings->set('showAsModal', (boolean) $this->showAsModal);
         $settings->set('hideUnaccepted', (boolean) $this->hideUnaccepted);
 
-
         $fileManager = new FileManager(['record' => ModuleEnabled::findOne((['module_id' => 'termsbox']))]);
         $fileManager->attach(Yii::$app->request->post('fileList'));
 
         if ($this->reset) {
             User::updateAll(['termsbox_accepted' => false]);
+            if (!Yii::$app->user->isGuest) {
+                Yii::$app->user->getIdentity()->termsbox_accepted = false;
+            }
         }
 
         return true;

@@ -46,6 +46,7 @@ class TermsboxCest
 
         $I->amGoingTo('activate the termsbox form and check if I see the termsbox');
         $form->active = true;
+        $form->reset = false;
         $form->save();
         $I->expectTo('see the termbox');
         $I->seeTermsbox();
