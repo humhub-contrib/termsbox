@@ -6,7 +6,6 @@ use humhub\modules\termsbox\Module;
 use termsbox\FunctionalTester;
 use Yii;
 use humhub\modules\termsbox\models\forms\EditForm;
-use tests\codeception\_pages\DashboardPage;
 
 class TermsboxCest
 {
@@ -24,11 +23,13 @@ class TermsboxCest
         $this->module->settings->delete('content');
         $this->module->settings->delete('statement');
         $this->module->settings->delete('active');
-        $this->module->settings->delete('timestamp');
+        $this->module->settings->delete('showAsModal');
+        $this->module->settings->delete('hideUnaccepted');
     }
-    
+
     public function testTermsbox(FunctionalTester $I)
     {
+        $I->amUser();
         $I->wantToTest('if the termsbox works as expected');
         $I->amGoingTo('save the termsbox form without activation');
 
@@ -40,7 +41,6 @@ class TermsboxCest
         $form->content = 'Test Message';
         $form->save();
 
-        $I->amUser();
         $I->expect('not to see the termbox');
         $I->dontSeeTermsbox();
 
@@ -67,7 +67,6 @@ class TermsboxCest
         $I->amGoingTo('save the termbox form again without activation but reset');
         $form->active = false;
         $form->save();
-        DashboardPage::openBy($I);
         $I->expect('not to see the termbox since it is not set to active');
         $I->dontSeeTermsbox();
 
@@ -75,7 +74,6 @@ class TermsboxCest
         $form->active = true;
         $form->reset = false;
         $form->save();
-        DashboardPage::openBy($I);
         $I->expect('not to see the termbox since I already accepted it before');
         $I->dontSeeTermsbox();
 
@@ -83,7 +81,6 @@ class TermsboxCest
         $form->active = true;
         $form->reset = true;
         $form->save();
-        DashboardPage::openBy($I);
         $I->expect('to see the termbox since the reset was set to true');
         $I->seeTermsbox();
     }
