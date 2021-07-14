@@ -3,7 +3,7 @@
 namespace termsbox;
 
 use Codeception\Module;
-use Yii;
+use humhub\modules\termsbox\Module as termsboxModule;
 use yii\helpers\Url;
 
 /**
@@ -17,17 +17,17 @@ class TermsboxHelper extends Module
 
     public function seeTermsbox()
     {
-        $this->assertTrue(Yii::$app->getModule('termsbox')->showTermsbox());
+        $this->assertTrue(termsboxModule::showTerms());
     }
     
     public function dontSeeTermsbox()
     {
-        $this->assertFalse(Yii::$app->getModule('termsbox')->showTermsbox());
+        $this->assertFalse(termsboxModule::showTerms());
     }
     
     public function acceptTermsbox()
     {
-         $this->getModule('Yii2')->sendAjaxPostRequest('index-test.php?r=/termsbox/index/accept');
+         $this->getModule('Yii2')->sendAjaxPostRequest(Url::to(['/termsbox/index/accept']));
     }
     
     public function declineTermsbox()

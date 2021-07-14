@@ -2,6 +2,7 @@
 
 namespace tests\codeception\unit\modules\termsbox;
 
+use humhub\modules\termsbox\Module;
 use Yii;
 use tests\codeception\_support\HumHubDbTestCase;
 use Codeception\Specify;
@@ -11,11 +12,16 @@ class TermsboxFormTest extends HumHubDbTestCase
 {
 
     use Specify;
-    
+
+    /**
+     * @var Module
+     */
+    var $module;
+
     /**
      * @inerhitdoc
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->module = Yii::$app->getModule('termsbox');
@@ -60,7 +66,6 @@ class TermsboxFormTest extends HumHubDbTestCase
        $this->assertEquals('Test Content', $this->module->settings->get('content'));
        $this->assertEquals('Test Statement', $this->module->settings->get('statement'));
        $this->assertEquals(true, $this->module->settings->get('active'));
-       $this->assertNotNull($this->module->settings->get('timestamp'));
     }
 
     /**
@@ -75,11 +80,9 @@ class TermsboxFormTest extends HumHubDbTestCase
        $form->content = 'Test Message';
        $form->statement = 'Test Statement';
        $form->save();
-       
-       $timestamp = $this->module->settings->get('timestamp');
-       
+
        sleep(1);
-       
+
        $form2 = new EditForm();
        $form2->title = 'MyTitle2';
        $form2->active = true;
@@ -87,14 +90,13 @@ class TermsboxFormTest extends HumHubDbTestCase
        $form2->content = 'Test Message2';
        $form2->statement = 'Test Statement2';
        $form2->save();
-       
+
        $module = $this->module;
-       
+
        $this->assertEquals('MyTitle2', $module->settings->get('title'));
        $this->assertEquals('Test Message2', $module->settings->get('content'));
        $this->assertEquals('Test Statement2', $module->settings->get('statement'));
        $this->assertEquals(true, $module->settings->get('active'));
-       $this->assertNotEquals($timestamp, $module->settings->get('timestamp'));
     }
     
     /**
