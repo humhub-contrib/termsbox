@@ -1,9 +1,9 @@
 Changelog
 =========
 
-1.0.6  (Unreleased)
----------------------
-- Enh: Update logout url
+1.0.6  (August 26, 2021)
+------------------------
+- Enh #3: Update logout url to POST method
 
 1.0.5  (April 06, 2020)
 ---------------------
