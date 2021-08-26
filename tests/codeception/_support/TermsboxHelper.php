@@ -32,6 +32,6 @@ class TermsboxHelper extends Module
     
     public function declineTermsbox()
     {   
-         $this->getModule('Yii2')->amOnPage(['/termsbox/index/decline']);
+         $this->getModule('Yii2')->_loadPage('POST', ['/termsbox/index/decline']);
     }
 }

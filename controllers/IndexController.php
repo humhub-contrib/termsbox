@@ -29,13 +29,14 @@ class IndexController extends Controller
 
     public function actionDecline()
     {
+        $this->forcePostRequest();
+
         $user = Yii::$app->user->getIdentity();
         $user->termsbox_accepted = false;
         $user->save();
 
-        return $this->redirect(['/user/auth/logout']);
+        // Note: don't use simple redirect because the logout action requires POST method
+        return Yii::$app->runAction('/user/auth/logout');
     }
 
 }
-
-?>

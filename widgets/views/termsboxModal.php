@@ -24,7 +24,7 @@ Assets::register($this);
             </div>
             <div class="modal-footer">
                 <a id="termsbox-accept" class="btn btn-success" data-ui-loader><?= Yii::t('TermsboxModule.widgets_views_termsboxModal', 'Accept'); ?></a>
-                <a class="btn btn-danger" href="<?= Url::to(['/termsbox/index/decline']); ?>" data-ui-loader><?= Yii::t('TermsboxModule.widgets_views_termsboxModal', 'Decline'); ?></a>
+                <a class="btn btn-danger" href="<?= Url::to(['/termsbox/index/decline']); ?>" data-method="POST" data-ui-loader><?= Yii::t('TermsboxModule.widgets_views_termsboxModal', 'Decline'); ?></a>
             </div>
         </div>
     </div>
