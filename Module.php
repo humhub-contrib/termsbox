@@ -29,6 +29,10 @@ class Module extends \humhub\components\Module
             $user = Yii::$app->user->getIdentity();
         }
 
+        if ($user && $user->mustChangePassword()) {
+            return false;
+        }
+
         if ($user === null || empty($user->termsbox_accepted)) {
             return true;
         }
