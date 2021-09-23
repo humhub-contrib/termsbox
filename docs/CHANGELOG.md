@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.0  (Unreleased)
+------------------------
+- Fix #4: Don't show termsbox when user must change password
+
 1.0.6  (August 26, 2021)
 ------------------------
 - Enh #3: Update logout url to POST method
