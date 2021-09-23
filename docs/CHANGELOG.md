@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.0  (Unreleased)
-------------------------
+1.1.0  (September 23, 2021)
+----------------------------
 - Fix #4: Don't show termsbox when user must change password
 
 1.0.6  (August 26, 2021)
