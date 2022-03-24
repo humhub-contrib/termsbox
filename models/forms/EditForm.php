@@ -2,14 +2,13 @@
 
 namespace humhub\modules\termsbox\models\forms;
 
-use humhub\models\ModuleEnabled;
-use humhub\modules\file\components\FileManager;
-use humhub\modules\file\libs\FileHelper;
-use humhub\modules\file\models\File;
-use Yii;
+use humhub\modules\content\widgets\richtext\RichText;
+use humhub\modules\termsbox\models\Setting;
 use humhub\modules\user\models\User;
+use Yii;
+use yii\base\Model;
 
-class EditForm extends \yii\base\Model
+class EditForm extends Model
 {
 
     public $active;
@@ -25,10 +24,10 @@ class EditForm extends \yii\base\Model
      */
     public function rules()
     {
-        return array(
-            array(['title', 'content', 'statement'], 'required'),
-            array(['reset', 'active', 'hideUnaccepted', 'showAsModal'], 'safe')
-        );
+        return [
+            [['title', 'content', 'statement'], 'required'],
+            [['reset', 'active', 'hideUnaccepted', 'showAsModal'], 'safe'],
+        ];
     }
 
     /**
@@ -52,7 +51,7 @@ class EditForm extends \yii\base\Model
      */
     public function attributeLabels()
     {
-        return array(
+        return [
             'active' => Yii::t('TermsboxModule.models_forms_EditForm', 'Active'),
             'title' => Yii::t('TermsboxModule.models_forms_EditForm', 'Title'),
             'statement' => Yii::t('TermsboxModule.models_forms_EditForm', 'Statement'),
@@ -60,7 +59,7 @@ class EditForm extends \yii\base\Model
             'reset' => Yii::t('TermsboxModule.models_forms_EditForm', 'Mark as unseen for all users'),
             'showAsModal' => Yii::t('TermsboxModule.models_forms_EditForm', 'Show terms as modal'),
             'hideUnaccepted' => Yii::t('TermsboxModule.models_forms_EditForm', 'Hide users which not accepted the terms (Note: May require search index rebuild)'),
-        );
+        ];
     }
 
     /**
@@ -76,8 +75,9 @@ class EditForm extends \yii\base\Model
         $settings->set('showAsModal', (boolean) $this->showAsModal);
         $settings->set('hideUnaccepted', (boolean) $this->hideUnaccepted);
 
-        $fileManager = new FileManager(['record' => ModuleEnabled::findOne((['module_id' => 'termsbox']))]);
-        $fileManager->attach(Yii::$app->request->post('fileList'));
+        if ($setting = Setting::findByName('content')) {
+            RichText::postProcess($this->content, $setting);
+        }
 
         if ($this->reset) {
             User::updateAll(['termsbox_accepted' => false]);
