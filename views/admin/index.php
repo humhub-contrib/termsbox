@@ -1,9 +1,11 @@
 <?php
 
-use yii\helpers\Html;
-use yii\helpers\Url;
-use humhub\widgets\ActiveForm;
-use humhub\widgets\MarkdownField;
+use humhub\modules\content\widgets\richtext\RichTextField;
+use humhub\modules\termsbox\models\forms\EditForm;
+use humhub\modules\ui\form\widgets\ActiveForm;
+use humhub\widgets\Button;
+
+/* @var EditForm $model */
 ?>
 <div class="panel panel-default">
     <div class="panel-heading"><?php echo Yii::t('TermsboxModule.views_admin_index', 'Terms Box Configuration'); ?></div>
@@ -14,7 +16,7 @@ use humhub\widgets\MarkdownField;
         <?= $form->field($model, 'active')->checkbox(); ?>
         <?= $form->field($model, 'title'); ?>
         <?= $form->field($model, 'statement'); ?>
-        <?= $form->field($model, 'content')->widget(MarkdownField::class) ?>
+        <?= $form->field($model, 'content')->widget(RichTextField::class) ?>
         <?= $form->field($model, 'reset')->checkbox(); ?>
         <!--
         <?= $form->field($model, 'showAsModal')->checkbox(); ?>
@@ -23,8 +25,9 @@ use humhub\widgets\MarkdownField;
 
         <hr>
 
-        <?= Html::submitButton(Yii::t('TermsboxModule.views_admin_index', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']); ?>
-        <a class="btn btn-default" href="<?= Url::to(['/admin/module']); ?>"><?= Yii::t('TermsboxModule.views_admin_index', 'Back to modules'); ?></a>
+        <?= Button::save()->submit() ?>
+        <?= Button::defaultType(Yii::t('TermsboxModule.views_admin_index', 'Back to modules'))
+            ->link(['/admin/module']) ?>
 
         <?php ActiveForm::end(); ?>
     </div>

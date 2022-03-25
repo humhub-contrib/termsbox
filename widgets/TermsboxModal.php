@@ -2,16 +2,17 @@
 
 namespace humhub\modules\termsbox\widgets;
 
+use humhub\components\Widget;
 use humhub\modules\termsbox\models\forms\EditForm;
 
 /**
  * Will injected a terms and condition box to the layout
  *
- * @package humhub.modules.breakingnews.widgets
+ * @package humhub.modules.termsbox.widgets
  * @since 0.5 
  * @author Luke
  */
-class TermsboxModal extends \humhub\components\Widget
+class TermsboxModal extends Widget
 {
 
     /**
@@ -29,5 +30,3 @@ class TermsboxModal extends \humhub\components\Widget
     }
 
 }
-
-?>

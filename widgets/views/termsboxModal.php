@@ -1,11 +1,13 @@
 <?php
 
+use humhub\modules\content\widgets\richtext\converter\RichTextToHtmlConverter;
 use humhub\modules\termsbox\Assets;
-use yii\helpers\Url;
 use humhub\libs\Html;
-use humhub\widgets\MarkdownView;
+use yii\helpers\Url;
 
+/* @var $title string */
 /* @var $statement string */
+/* @var $content string */
 
 Assets::register($this);
 ?>
@@ -18,8 +20,8 @@ Assets::register($this);
             </div>
             <div class="modal-body">
                 <p class='help-block'><?= Html::encode($statement) ?></p>
-                <div class="termsbox-body">
-                    <?= MarkdownView::widget(['markdown' => $content]); ?>
+                <div class="termsbox-body" data-ui-markdown>
+                    <?= RichTextToHtmlConverter::process($content) ?>
                 </div>
             </div>
             <div class="modal-footer">

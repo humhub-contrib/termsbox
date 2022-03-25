@@ -19,7 +19,7 @@ class TermsboxCest
         $I->jsClick('#editform-active'); 
         $I->fillField('EditForm[title]', 'Test title');
         $I->fillField('EditForm[statement]', 'Test statement');
-        $I->fillField('EditForm[content]', 'Test content');
+        $I->fillField('#editform-content .humhub-ui-richtext', 'Test content');
         $I->click('Save');
 
         $I->expectTo('see the termsbox');
