@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.1  (Unreleased)
-----------------------------
+1.1.1  (March 25, 2022)
+-----------------------
 - Fix #6: Fix file attaching to content field
 
 1.1.0  (September 23, 2021)
