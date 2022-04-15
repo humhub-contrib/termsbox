@@ -1,6 +1,6 @@
 <?php
-return array (
-  'Back to modules' => 'Επιστροφή στις ενότητες',
-  'Save' => 'Αποθήκευση',
-  'Terms Box Configuration' => '',
-);
+
+return [
+    'Back to modules' => 'Επιστροφή στις ενότητες',
+    'Terms Box Configuration' => '',
+];

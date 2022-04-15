@@ -1,6 +1,6 @@
 <?php
-return array (
-  'Back to modules' => 'Zpět na přehled modulů',
-  'Save' => 'Uložit',
-  'Terms Box Configuration' => '',
-);
+
+return [
+    'Back to modules' => 'Zpět na přehled modulů',
+    'Terms Box Configuration' => '',
+];

@@ -1,6 +1,6 @@
 <?php
-return array (
-  'Back to modules' => 'Tilbage til moduler',
-  'Save' => 'Gem',
-  'Terms Box Configuration' => '',
-);
+
+return [
+    'Back to modules' => 'Tilbage til moduler',
+    'Terms Box Configuration' => '',
+];

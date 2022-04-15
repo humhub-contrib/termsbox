@@ -1,6 +1,6 @@
 <?php
-return array (
-  'Back to modules' => 'Tornar a os modulos',
-  'Save' => 'Uložit',
-  'Terms Box Configuration' => '',
-);
+
+return [
+    'Back to modules' => 'Tornar a os modulos',
+    'Terms Box Configuration' => '',
+];

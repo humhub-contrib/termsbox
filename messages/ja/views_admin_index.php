@@ -1,6 +1,6 @@
 <?php
-return array (
-  'Back to modules' => 'モジュールへ戻る',
-  'Save' => '保存',
-  'Terms Box Configuration' => '',
-);
+
+return [
+    'Back to modules' => 'モジュールへ戻る',
+    'Terms Box Configuration' => '',
+];

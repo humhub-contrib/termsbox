@@ -1,6 +1,6 @@
 <?php
-return array (
-  'Back to modules' => 'Modüllere dön',
-  'Save' => 'Kaydet',
-  'Terms Box Configuration' => '',
-);
+
+return [
+    'Back to modules' => 'Modüllere dön',
+    'Terms Box Configuration' => '',
+];
