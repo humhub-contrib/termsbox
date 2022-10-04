@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.2  (October 4, 2022)
+------------------------
+- Updated translations
+
 1.1.1  (March 25, 2022)
 -----------------------
 - Fix #6: Fix file attaching to content field
