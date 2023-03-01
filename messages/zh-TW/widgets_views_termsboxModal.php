@@ -1,5 +1,5 @@
 <?php
 return array (
   'Accept' => '接受',
-  'Decline' => '',
+  'Decline' => '拒絕',
 );
