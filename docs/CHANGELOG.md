@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.3 (Unreleased)
+----------------------
+- Enh #9: Tests for `next` version
+
 1.1.2  (October 4, 2022)
 ------------------------
 - Updated translations
