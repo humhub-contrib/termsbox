@@ -4,6 +4,7 @@ Changelog
 1.1.3 (Unreleased)
 ----------------------
 - Enh #9: Tests for `next` version
+- Fix #10: Fix visibility of the method `Controller::getAccessRules()`
 
 1.1.2  (October 4, 2022)
 ------------------------
