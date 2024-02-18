@@ -1,6 +1,5 @@
 <?php
-
-return [
-    'Back to modules' => '',
-    'Terms Box Configuration' => '',
-];
+return array (
+  'Back to modules' => 'Povratak na module',
+  'Terms Box Configuration' => '',
+);
