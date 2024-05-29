@@ -1,7 +1,7 @@
 <?php
 
 use humhub\modules\content\widgets\richtext\converter\RichTextToHtmlConverter;
-use humhub\modules\termsbox\Assets;
+use humhub\modules\termsbox\assets\Assets;
 use humhub\libs\Html;
 use yii\helpers\Url;
 
