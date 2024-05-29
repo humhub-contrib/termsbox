@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2015 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
  */
-namespace humhub\modules\termsbox;
+namespace humhub\modules\termsbox\assets;
 
 use yii\web\AssetBundle;
 
@@ -18,18 +18,22 @@ use yii\web\AssetBundle;
  */
 class Assets extends AssetBundle
 {
+    /**
+     * @inheritDoc
+     */
+    public $sourcePath = '@termsbox/resources';
 
+    /**
+     * @inheritDoc
+     */
     public $publishOptions = [
-        'forceCopy' => false
+        'forceCopy' => false,
     ];
 
+    /**
+     * @inheritDoc
+     */
     public $css = [
-        'termsbox.css',
+        'css/termsbox.css',
     ];
-
-    public function init()
-    {
-        $this->sourcePath = dirname(__FILE__) . '/assets';
-        parent::init();
-    }
 }
