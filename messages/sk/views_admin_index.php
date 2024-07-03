@@ -1,5 +1,5 @@
 <?php
 return array (
   'Back to modules' => 'Späť k modulom',
-  'Terms Box Configuration' => '',
+  'Terms Box Configuration' => 'Konfigurácia Poľa Podmienok',
 );
